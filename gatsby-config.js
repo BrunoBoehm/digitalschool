@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: `Digital School`,
@@ -31,7 +33,7 @@ module.exports = {
       resolve: 'gatsby-source-prismic-graphql',
       options: {
         repositoryName: 'digitalschool', // (required)
-        accessToken: '...', // (optional)
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN, // (optional)
         path: '/preview', // (optional, default: /preview)
         previews: true, // (optional, default: false)
       }
