@@ -20,6 +20,8 @@ exports.createPages = async ({ graphql, actions }) => {
     // https://www.gatsbyjs.org/docs/actions/#createPage
     const { createPage } = actions;
 
+    const postTemplate = path.resolve( 'src/templates/blog-post.js' );
+
     // graphql function returns a promise so we can use this little promise helper to have a nice result/error state
     const wrapper = promise => promise.then(result => ({ result, error: null })).catch(error => ({ error, result: null }));  
 
@@ -64,7 +66,7 @@ exports.createPages = async ({ graphql, actions }) => {
         postsList.forEach( edge => {
             createPage({
                 path: `/${edge.node.uid}`,
-                component: path.resolve( 'src/templates/blog-post.js' ),
+                component: postTemplate,
                 context: {  // passed as props to component and component's GraphQL query
                     // path (from above) is always available
                     uid: edge.node.uid,
