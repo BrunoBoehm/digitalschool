@@ -30,14 +30,15 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-prismic-graphql',
+      resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'digitalschool', // (required)
-        accessToken: process.env.PRISMIC_ACCESS_TOKEN, // (optional)
-        path: '/preview', // (optional, default: /preview)
-        previews: true, // (optional, default: false)
+        accessToken: `${process.env.PRISMIC_ACCESS_TOKEN}`, // (optional)
+        linkResolver: ({ node, key, value }) => post => {
+          `/${post.uid}`
+        },
       }
-    }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
